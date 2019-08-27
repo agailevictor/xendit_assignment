@@ -1,0 +1,38 @@
+{
+  "name": "xendit_assignment",
+  "version": "1.0.0",
+  "description": "Rest API",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agailevictor/xendit_assignment.git"
+  },
+  "author": "Agaile Victor",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "app-root-path": "^2.2.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2",
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^7.0.0",
+    "braces": ">=2.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/agailevictor/xendit_assignment/issues"
+  },
+  "homepage": "https://github.com/agailevictor/xendit_assignment#readme"
+}
