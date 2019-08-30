@@ -50,7 +50,24 @@ var dataService = {
             });
 
         } catch (e) {
-            console.log("Exception in handleGetComments : " + e);
+            console.log("Exception in handlePostComments : " + e);
+        }
+    },
+    handleDeleteComments(org_name, callback) {
+        try {
+            var sql = 'UPDATE public.tbl_comments SET is_available= false, modified_date= CURRENT_TIMESTAMP WHERE org_id =(select org_id from public."M_org" where LOWER(org_name) = \'' + org_name + '\') and is_available= true;';
+            pool.connect(function (err, client, done) {
+                if (err) {
+                    callback(err);
+                } else {
+                    client.query(sql, callback);
+                    client.release();
+                }
+
+            });
+
+        } catch (e) {
+            console.log("Exception in handleDeleteComments : " + e);
         }
     }
 };

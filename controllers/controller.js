@@ -1,5 +1,4 @@
 import dataService from "../services/service";
-import { notStrictEqual } from "assert";
 
 var dataController = {
     getMembers(req, res) {
@@ -15,7 +14,7 @@ var dataController = {
             });
 
         } else {
-            res.status(400).send("Search value cannot be empty");
+            res.status(400).send("Missing fields !");
         }
     },
     getComments(req, res) {
@@ -31,7 +30,7 @@ var dataController = {
             });
 
         } else {
-            res.status(400).send("Search value cannot be empty");
+            res.status(400).send("Missing fields !");
         }
     },
     postComments(req, res) {
@@ -49,7 +48,25 @@ var dataController = {
             res.status(200);
 
         } else {
-            res.status(400).send("Search value cannot be empty");
+            res.status(400).send("Missing fields !");
+        }
+    },
+    deleteComments(req, res) {
+        if (req.params && req.params.org !== '') {
+            var QueryStringValue = req.params.org.toLocaleLowerCase();
+            var comment = req.body.comment;
+            dataService.handleDeleteComments(QueryStringValue, function (err, rows) {
+                if (err) {
+                    res.status(400).send(err);
+                }
+                else {
+                    res.status(200).json({ data: 'Successfully deleted the comments!' });
+                }
+            });
+            res.status(200);
+
+        } else {
+            res.status(400).send("Missing fields !");
         }
     }
 };
