@@ -35,6 +35,23 @@ var dataService = {
         } catch (e) {
             console.log("Exception in handleGetComments : " + e);
         }
+    },
+    handlePostComments(org_name, data, callback) {
+        try {
+            var sql = 'INSERT INTO public.tbl_comments(org_id, comments) VALUES ((select org_id from public."M_org" where LOWER(org_name) = \'' + org_name + '\'),\'' + data + '\');';
+            pool.connect(function (err, client, done) {
+                if (err) {
+                    callback(err);
+                } else {
+                    client.query(sql, callback);
+                    client.release();
+                }
+
+            });
+
+        } catch (e) {
+            console.log("Exception in handleGetComments : " + e);
+        }
     }
 };
 
