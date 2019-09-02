@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  service-db:
+    image: service-db
+    container_name: service-db
+    build:
+      context: ./postgres
+    ports:
+      - ${PG_PORT}:${PG_PORT}
+    environment:
+      POSTGRES_DB: ${PG_DATABASE}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+  service-api:
+    image: service-api
+    container_name: service-api
+    build:
+      context: ./api
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      DB_HOST: ${PG_HOST}
+      DB_USER: ${PG_USER}
+      DB_PASSWORD: ${PG_PASSWORD}
+      DB: ${PG_DATABASE}
+      DB_PORT: ${PG_PORT}
+    volumes:
+      - ./api/config/:/usr/app/config/
+      - ./api/controllers/:/usr/app/controllers/
+      - ./api/db/:/usr/app/db/
+      - ./api/routes/:/usr/app/routes/
+      - ./api/services/:/usr/app/services/
